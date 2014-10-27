@@ -18,8 +18,16 @@
 	<div class="panel-heading">
 		<h3>Products</h3>
 		</div>
+		<div class="panel-body" >
+			<div unordered-list="products" >
+				This
+			</div>
+		</div>
 		<div class="panel-body">
-			<div unordered-list="products" list-property="price | currency"></div>
+			<div unordered-list="products" template="table" class="table table-striped"
+			ng-repeat="count in [1, 2, 3]">
+				This
+			</div>
 		</div>
 	</div>
 </body>

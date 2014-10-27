@@ -13,18 +13,18 @@ app.controller("defaultCtrl", function($scope){
 });
 
 app.directive("unorderedList", function(){
-	return function(scope, element, attrs){
-		var data = scope[attrs["unorderedList"]],
-			propertyExpression = attrs["listProperty"];
-		if(angular.isArray(data)){
-			var listElem = angular.element("<ul>");
-			element.append(listElem);
-			for (var i = 0; i < data.length; i++) {
-				var itemElement = angular.element("<li>")
-					.text(scope.$eval(propertyExpression, data[i]));
-				listElem.append(itemElement);
-			}
-		}
+	return {
+		link: function(scope, element, attrs){
+				scope.data = scope[attrs["unorderedList"]];
+			},
+		restrict: "A",
+		templateUrl: //"tableTemplate.html"
+		function(elem, attrs){
+			return attrs["template"] == "table" ? 
+				"tableTemplate.html" : "itemTemplate.html";
+		} 
+		,
+		replace: true
 	};
 });
 
