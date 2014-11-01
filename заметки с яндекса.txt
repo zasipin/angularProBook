@@ -1,0 +1,94 @@
+1) frontend дизайн
+adobe reFlow
+yandex cocaine
+asm.js
+
+2) frontend Api - спецификации
+webCrypto
+webAnimations
+service workers
+Fetch
+URL
+getQuadBoxes - 
+
+3) 
+knockout
+ember
+meteor - + серверный код
+react - слабо связн компоненты + серверный код
+polymer
+basis.js
+underscorejs
+
+новое
+ampersand.js
+i-bem.js
+
+hoodie
+swarm.js
+
+4) custom elements
+html templates
+scoped css
+html imports - bem
+html bindings
+
+5) инструменты
+source map
+dotfiles
+yeoman
+grunt
+gulp
+broccoli
+
+в браузере
+emmet
+worrydream.com
+
+6) lanyrd.com
+eventbrite
+smashingmagazine.com - можно публиковаться
+MoscowJS + youtube
+tech.yandex.com
+radiojs
+
+frontender magazine
+html5 weekly
+
+----
+wkwebkit wkwebview
+
+-------
+mint.com
+--////////// start
+Разработка со скоростью света - Станислав Жуковский
+Прототип приложения за выходные
+1)
+идею надо записать - или несколько, писать неделю
+2)
+можно ли сделать за выходные?
+3)
+Пока нельзя - обрезаем до того когда будет можно реализовать за выходные
+4) дизайн - invisionapp.com
+5) использовать легальный софт
+6)  суббота
+карта эранов
+	сделать статические виды(таблицы, разметку), relativeweb.com
+
+	воскресенье - придумать о чем приложение, т.е. рассказ о нем
+"мое приложение о ..."
+
+взять телефон - и показать на телефоне людям, 
+
+записать что нравится людям, что не нравится
+
+БД
+parse.com
+amazon web services
+
+-- decksetapp.com
+-- ////////////////// end
+
+ ----- dropbox ------------
+ 
+ 
