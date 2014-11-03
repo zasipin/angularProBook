@@ -5,6 +5,9 @@
 	<script src="/bower_components/angular/angular.js"></script>
 	<link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 	<link href="/bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+	<style>
+		*.error { color: red; font-weight: bold; }
+	</style>
 	<script type="text/ng-template" id="triTemplate">
 		<div class="well">
 			<div class="btn-group">
@@ -12,6 +15,9 @@
 				<button class="btn btn-default">No</button>
 				<button class="btn btn-default">Not Sure</button>
 			</div>
+			<span class="error" ng-show="myForm.decision.$error.confidence">
+				You need to be sure
+			</span>
 		</div>
 	</script>
 	<script type="text/javascript">
@@ -26,6 +32,23 @@
 				require: "ngModel",
 				template: document.querySelector("#triTemplate").outerText,
 				link: function(scope, element, attrs, ctrl){
+					var validateParser = function (value){
+						var valid = (value == "Yes" || value == "No");
+						ctrl.$setValidity("confidence", valid);
+						return valid ? value : undefined;
+					};
+					ctrl.$parsers.push(validateParser);
+					
+					ctrl.$formatters.push(function(value){
+						return value == "Huh?" ? "Not Sure" : value;
+					});
+					
+					element.on("click", function(event){
+						setSelected(event.target.innerText);
+						scope.$apply(function(){
+							ctrl.$setViewValue(event.target.innerText);
+						});
+					});
 					var setSelected = function(value){
 						var buttons = element.find("button");
 						buttons.removeClass("btn-primary");
@@ -37,6 +60,7 @@
 					};
 					//setSelected(scope.dataValue);
 					ctrl.$render = function(){
+						validateParser(ctrl.$viewValue);
 						setSelected(ctrl.$viewValue || "Not Sure");
 					};
 				}
@@ -46,13 +70,17 @@
 	</script>	
 </head>
 <body ng-controller="defaultCtrl">
-	<div><tri-button ng-model="dataValue"/></div>
-	<div class="well">
+	<form name="myForm" novalidate>
+		<div><tri-button name="decision" ng-model="dataValue"/></div>
+	</form>
+	
+	<!--<div class="well">
 		Value:
 		<select ng-model="dataValue">
 			<option>Yes</option>
 			<option>No</option>
 			<option>Not Sure</option>
+			<option>Huh?</option>
 		</select>	
 	</div>
 </body>
