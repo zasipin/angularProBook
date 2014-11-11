@@ -8,34 +8,25 @@
 <script>
 	angular.module("exampleApp", [])
 	.controller("defaultCtrl", function ($scope) {
-		$scope.price = "100.23"
+		$scope.cities = ["London", "Paris", "New York"];
 	})
-	.directive("evalExpression", function($interpolate){
-		var interpolationFn = $interpolate("The total is: {{amount | currency}} (including tax)");
-		return {
-			scope: {
-				amount: "=amount",
-				tax: "=tax"
-			},
-			link: function(scope, element, attrs){
-				scope.$watch("amount", function(newValue){
-					var localData = {
-						total: Number(newValue)
-							+ Number(newValue) * (Number(scope.tax) / 100)
-					};
-					element.text(interpolationFn(scope));
-				});
-			}
-
-		};
+	.directive("evalExpression", function($compile){
+		return function (scope, element, attrs) {
+			var content = "<ul><li ng-repeat='city in cities'>{{city}}</li></ul>"
+			var listElem = angular.element(content);
+			var compileFn = $compile(listElem);
+			compileFn(scope);
+			element.append(listElem);
+		}
 	});
+
 </script>
 </head>
 <body ng-controller="defaultCtrl">
-	<div class="panel panel-default">
-		<p><input class="form-control" ng-model="dataValue"></p>
-		<dsiv>
-			<span eval-expression amount="dataValue" tax="10"></span>
+	<div class="well">
+		
+		<div>
+			<span eval-expression></span>
 		</div>
 	</div>
 </body>
