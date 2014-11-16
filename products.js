@@ -1,4 +1,4 @@
-angular.module("exampleApp", [])
+angular.module("exampleApp", ["increment"])
 .constant("baseUrl", "https://www.parse.com/1/classes/Products/")
 .config(function($httpProvider){
 	$httpProvider.defaults.headers.common["X-Parse-Application-Id"] 
@@ -48,6 +48,7 @@ angular.module("exampleApp", [])
 		/*product.objectId = $scope.products.length;
 		$scope.products.push(product);
 		$scope.displayMode = "list";*/
+		product.price = +product.price;
 		$http.post(baseUrl, product).success(function(response){
 			product.objectId = response.objectId;
 			$scope.products.push(product);
@@ -68,6 +69,7 @@ angular.module("exampleApp", [])
 		delete localProduct.objectId;
 		delete localProduct.createdAt;
 		delete localProduct.updatedAt;
+		localProduct.price = +localProduct.price;
 		console.log(localProduct);
 		$http({
 			url: baseUrl + product.objectId,
@@ -80,7 +82,9 @@ angular.module("exampleApp", [])
 					break;
 				}
 			}
+			$scope.displayMode = "list";
 		});
+
 	};
 
 	$scope.editOrCreateProduct = function(product){
