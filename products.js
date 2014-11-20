@@ -1,10 +1,12 @@
 angular.module("exampleApp", ["increment", "ngResource"])
-.constant("baseUrl", "https://www.parse.com/1/classes/Products/")
+.constant("baseUrl", "https://api.parse.com/1/classes/Products/")
 .config(function($httpProvider){
 	$httpProvider.defaults.headers.common["X-Parse-Application-Id"] 
 		= "2xqzKJgsVbIu077hwOAMbI8mUgAC0wzRMgPNzmPk";
 	$httpProvider.defaults.headers.common["X-Parse-REST-API-Key"]
 		= "7oZGdWcwON0xc3wSOqTN4nbJ6takA2SqJEBFCWdJ"; 	
+	//$httpProvider.defaults.headers.common["Access-Control-Request-Method"]
+	//= "GET";	
 	/*$httpProvider.interceptors.push(function(){
 		return {
 			response: function(response){
@@ -27,7 +29,7 @@ angular.module("exampleApp", ["increment", "ngResource"])
 		query: {
 			method: "GET", isArray: true, transformResponse: function(data, headers){
 				return JSON.parse(data).results;
-			}
+			}//, withCredentials: true
 		},
 		update: { method: "PUT" }
 	});
@@ -51,7 +53,8 @@ angular.module("exampleApp", ["increment", "ngResource"])
 	};
 
 	$scope.updateProduct = function(product){
-		angular.copy(product).$update().then(function(){
+		product.price = +product.price;
+		angular.copy(product).$update().then(function(data){
 			$scope.displayMode = "list";
 		});
 	};
