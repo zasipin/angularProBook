@@ -4,30 +4,20 @@
 	<title>Directives</title>
 	<script src="/bower_components/angular/angular.js"></script>
 	<script src="angular-locale_ru-ru.js"></script>
-	<!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>-->
-	<script src="controllers.js"></script>
-	<!--<script src="customFilters.js"></script>-->
-	<!--<script src="/bower_components/jquery/dist/jquery.js"></script>
-	<script src="/bower_components/jquery-ui/jquery-ui.js"></script>-->
+	<script src="app.js"></script>
+
 	<link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 	<link href="/bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
 	<!--<link href="/bower_components/jquery-ui/themes/sunny/jquery-ui.css" rel="stylesheet" />-->
 </head>
 <body ng-controller="defaultCtrl">
 	<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3>Products</h3>
-		</div>
-		<div class="panel-body" >
-			<div unordered-list="products" >
-				This
-			</div>
-		</div>
 		<div class="panel-body">
-			<div unordered-list="products" template="table" class="table table-striped"
-			>
-				This
-			</div>
+			<p>Counter: {{counter}}</p>
+			<p>
+				<button class="btn btn-primary"
+					ng-click="incrementCounter()">Increment</button>
+			</p>
 		</div>
 	</div>
 </body>
